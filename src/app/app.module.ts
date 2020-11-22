@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { WeaponsComponent } from './weapons/weapons.component';
 import { MenuComponent } from './menu/menu.component';
 import { PartsComponent } from './parts/parts.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PartsComponent } from './parts/parts.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

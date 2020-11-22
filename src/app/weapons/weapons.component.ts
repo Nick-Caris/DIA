@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
+import {faTrash} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-weapons',
@@ -23,12 +25,21 @@ export class WeaponsComponent implements OnInit {
       electric: null
     }
   ];
+  trash;
 
 
   constructor(private http: HttpClient) {
+    this.trash = faTrash;
   }
 
   ngOnInit(): void {
+    this.getWeapons().subscribe(weapons => {
+      this.weapons = weapons;
+    });
+  }
+
+  // @TODO: FIND A WAY TO REFRESH
+  refreshWeapons() {
     this.getWeapons().subscribe(weapons => {
       this.weapons = weapons;
     });
@@ -39,7 +50,11 @@ export class WeaponsComponent implements OnInit {
   }
 
   removeWeapon(id) {
-    console.log('remove' + id);
+    console.log('delete: ' + id);
+    this.http.delete('http://localhost:8080/weapon/' + id).subscribe(text => {
+      console.log(text);
+      this.refreshWeapons(); // THIS DOES NOT WORK
+    });
   }
 
 }
