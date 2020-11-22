@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-weapons',
@@ -7,15 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeaponsComponent implements OnInit {
 
-  weapons = [
-    // tslint:disable-next-line:max-line-length
-    {id: 1, weapon: 'SABRE', grip: 'Links', handedness: 'Links', is_working: true, comment: 'hij werkt wel maar doet raar op woensdagen', is_borrowed: false, electric: true},
-    {id: 2, weapon: 'FOIL', grip: 'Rechts', handedness: 'Links', is_working: false, comment: null, is_borrowed: false, electric: false}
+  private getUrl = 'http://localhost:8080/weapons';
+
+  // tslint:disable-next-line:ban-types
+  weapons: Object = [
+    {
+      id: null,
+      weapon: null,
+      grip: null,
+      handedness: null,
+      is_working: null,
+      comment: null,
+      is_borrowed: null,
+      electric: null
+    }
   ];
 
-  constructor() { }
+
+  constructor(private http: HttpClient) {
+  }
 
   ngOnInit(): void {
+    this.getWeapons().subscribe(weapons => {
+      this.weapons = weapons;
+    });
+  }
+
+  getWeapons() {
+    return this.http.get(this.getUrl);
+  }
+
+  removeWeapon(id) {
+    console.log('remove' + id);
   }
 
 }

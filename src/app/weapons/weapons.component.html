@@ -21,6 +21,9 @@
     <th>
       comment
     </th>
+    <th>
+      delete
+    </th>
   </tr>
   <tr *ngFor="let weapon of weapons">
     <td>
@@ -30,19 +33,22 @@
       {{weapon.weapon}}
     </td>
     <td>
-      {{weapon.electric}}
+      {{weapon.electric == true ? "yes" : "no"}}
     </td>
     <td>
       {{weapon.handedness}}
     </td>
     <td>
-      {{weapon.is_working}}
+      {{weapon.is_working == true ? "yes" : "no"}}
     </td>
     <td>
-      {{weapon.is_borrowed}}
+      {{weapon.is_borrowed == true ? "yes" : "no"}}
     </td>
     <td>
       {{weapon.comment}}
+    </td>
+    <td>
+
     </td>
   </tr>
 </table>
