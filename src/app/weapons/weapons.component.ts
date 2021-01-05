@@ -38,7 +38,6 @@ export class WeaponsComponent implements OnInit {
     });
   }
 
-  // @TODO: FIND A WAY TO REFRESH
   refreshWeapons() {
     this.getWeapons().subscribe(weapons => {
       this.weapons = weapons;
@@ -50,11 +49,9 @@ export class WeaponsComponent implements OnInit {
   }
 
   removeWeapon(id) {
-    console.log('delete: ' + id);
-    this.http.delete('http://localhost:8080/weapon/' + id).subscribe(text => {
-      console.log(text);
-      this.refreshWeapons(); // THIS DOES NOT WORK
-    });
+    this.http.delete('http://localhost:8080/weapon/' + id).subscribe();
+    this.refreshWeapons();
+
   }
 
 }

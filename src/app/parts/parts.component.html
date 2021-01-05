@@ -1,1 +1,48 @@
-<p>parts works!</p>
+<table>
+  <tr>
+    <th>
+      id
+    </th>
+    <th>
+      Name part
+    </th>
+    <th>
+      Amount
+    </th>
+    <th>
+      Amount working
+    </th>
+    <th>
+      Comment
+    </th>
+    <th>
+      weapons which they can be installed to
+    </th>
+    <th>
+      delete
+    </th>
+  </tr>
+  <tr *ngFor="let part of parts">
+    <td>
+      {{part.id}}
+    </td>
+    <td>
+      {{part.name}}
+    </td>
+    <td>
+      {{part.amount}}
+    </td>
+    <td>
+      {{part.amount_working}}
+    </td>
+    <td>
+      {{part.comment}}
+    </td>
+    <td>
+      {{part.weapons}}
+    </td>
+    <td>
+      <fa-icon [icon]="trash" (click)="removePart(part.id)"></fa-icon>
+    </td>
+  </tr>
+</table>
